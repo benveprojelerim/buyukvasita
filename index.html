@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Büyük Vasıta Servis</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    text-align: center;
+    background: #111827;
+    color: white;
+}
+
+img{
+    height: 200px;
+    width: 500px;
+    border-radius: 60px;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #dc2626;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+nav button, nav a {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* MOBİL */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #dc2626;
+        width: 200px;
+        padding: 10px;
+    }
+
+    nav.active {
+        display: flex;
+    }
+}
+
+/* PANEL */
+.info-panel {
+    position: fixed;
+    bottom: -300px;
+    left: 0;
+    width: 100%;
+    background: #1f2937;
+    padding: 20px;
+    transition: 0.4s;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.info-panel.active {
+    bottom: 0;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+button.konum {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #22c55e;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Büyük Vasıta</div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <nav id="menu">
+        <button onclick="aramaSor()">📞 Telefon</button>
+        <button onclick="togglePanel('bilgi')">ℹ️ Servis Bilgisi</button>
+        <button onclick="togglePanel('aciklama')">📝 Açıklama</button>
+    </nav>
+</div>
+
+<img src="IMG-20260413-WA0000.jpg">
+
+<div class="container">
+    <h2>Hoşgeldiniz</h2>
+
+
+    <button class="konum" onclick="konumaGit()">
+        📍 Konuma Git
+    </button>
+</div>
+
+    <img src="IMG-20260413-WA0001.jpg"
+
+<!-- SERVİS BİLGİSİ PANEL -->
+<div id="bilgi" class="info-panel">
+    <h3>Servis Bilgisi</h3>
+    <p>📞 Telefon Simgesin'den Kısa ve Sorunsuz Ulaşa Bilirsiniz</p>
+    <p>🕒 7/24 Hizmet</p>
+    <p>📍 Tekirdağ / Saray</p>
+</div>
+
+<!-- AÇIKLAMA PANEL -->
+<div id="aciklama" class="info-panel">
+    <h3>Açıklama</h3>
+    <p>Her  Marka <MARK>TIR/KAMYON/OTOBÜS </MARK> Gibi ağır Vasıta araÇlarınızın <mark> MOTOR/MEKANİK/BAKIM/ONARIM/ ELEKTİRİK/ELEKTRONİK ARI ZAALRINIZ PROFOSYENEL BİR ŞEKİLDE TAMİR EDİLİP ONARILIR </mark></p>
+    <P>Elektirik kaçakları her türlü aydınlatma sistemlerinde oluşan arızalar modifiye sistemleri ses sistemleri dingil kaldırma , indirme sisteminde oluşan arızalar kaliteli parçalar ve güvenilir işçilikle itina ile yapılır</P>
+    
+    <P>Motor arızalarınız yağ bakımı fren sisteminizdeki arızalar süspansiyon arızalarınız arıza ışıklarınız söndürülür</P>
+</div>
+
+<script>
+function konumaGit() {
+    window.open("https://www.google.com/maps?q=41.0082,28.9784", "_blank");
+}
+
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+
+/* 📞 İZİNLİ ARAMA */
+function aramaSor() {
+    let cevap = confirm("Telefon araması başlatılsın mı?");
+    if (cevap) {
+        window.location.href = "tel:+905555555555";
+    }
+}
+
+/* 📦 PANEL KONTROL */
+function togglePanel(id) {
+    let bilgi = document.getElementById("bilgi");
+    let aciklama = document.getElementById("aciklama");
+
+    if (id === "bilgi") {
+        bilgi.classList.toggle("active");
+        aciklama.classList.remove("active");
+    } else {
+        aciklama.classList.toggle("active");
+        bilgi.classList.remove("active");
+    }
+}
+</script>
+
+</body>
+</html>
