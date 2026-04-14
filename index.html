@@ -10,8 +10,25 @@ body {
     margin: 0;
     font-family: Arial;
     text-align: center;
-    background: #111827;
     color: white;
+
+    background-image: url("oter.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* KARARTMA */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: -1;
 }
 
 img{
@@ -25,7 +42,7 @@ img{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #dc2626;
+    background: rgba(220,38,38,0.9);
     padding: 15px 20px;
     position: sticky;
     top: 0;
@@ -41,13 +58,12 @@ nav {
     gap: 15px;
 }
 
-nav button, nav a {
+nav button {
     color: white;
     background: none;
     border: none;
     font-size: 16px;
     cursor: pointer;
-    text-decoration: none;
 }
 
 .menu-toggle {
@@ -68,7 +84,7 @@ nav button, nav a {
         position: absolute;
         top: 60px;
         right: 0;
-        background: #dc2626;
+        background: rgba(220,38,38,0.95);
         width: 200px;
         padding: 10px;
     }
@@ -78,37 +94,97 @@ nav button, nav a {
     }
 }
 
-/* PANEL */
-.info-panel {
+/* PANELLER */
+.panel {
     position: fixed;
     bottom: -300px;
     left: 0;
     width: 100%;
-    background: #1f2937;
+    background: rgba(31,41,55,0.95);
     padding: 20px;
     transition: 0.4s;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
 
-.info-panel.active {
+.panel.active {
     bottom: 0;
 }
 
-.container {
-    margin-top: 50px;
+/* ALT BUTONLAR */
+.alt-butonlar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
-button.konum {
-    display: block;
-    margin: 20px auto;
+button.konum, button.telefon {
     padding: 15px 25px;
     font-size: 18px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.konum {
     background: #22c55e;
     color: white;
+}
+
+.telefon {
+    background: #dc2626;
+    color: white;
+}
+
+/* MOBİL ALT BUTON */
+@media (max-width: 768px) {
+    .alt-butonlar {
+        flex-direction: column;
+        width: 80%;
+        margin: 30px auto;
+    }
+
+    .alt-butonlar button {
+        width: 100%;
+    }
+}
+
+/* GALERİ */
+.galeri {
+    margin-top: 50px;
+}
+
+.galeri-list {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.galeri-list img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #dc2626;
+    transition: 0.3s;
+}
+
+.galeri-list img:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .galeri-list img {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+.container {
+    margin-top: 50px;
 }
 </style>
 </head>
@@ -117,12 +193,11 @@ button.konum {
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <div class="logo">Büyük Vasıta</div>
+    <div class="logo">Alfa Oto Servis Ağır Vasıta</div>
 
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
     <nav id="menu">
-        <button onclick="aramaSor()">📞 Telefon</button>
         <button onclick="togglePanel('bilgi')">ℹ️ Servis Bilgisi</button>
         <button onclick="togglePanel('aciklama')">📝 Açıklama</button>
     </nav>
@@ -133,49 +208,49 @@ button.konum {
 <div class="container">
     <h2>Hoşgeldiniz</h2>
 
-
-    <button class="konum" onclick="konumaGit()">
-        📍 Konuma Git
-    </button>
+    <!-- ALT BUTONLAR -->
+    <div class="alt-butonlar">
+        <button class="konum" onclick="konumaGit()">📍 Konuma Git</button>
+        <button class="telefon" onclick="aramaSor()">📞 Telefon</button>
+    </div>
 </div>
 
-    <img src="IMG-20260413-WA0001.jpg"
+<!-- GALERİ -->
+<div class="galeri">
+    <h3>🔧 Tamir Edilen Araçlar</h3>
+    <div class="galeri-list">
+        <img src="IMG-20260413-WA0002.jpg">
+        <img src="IMG-20260413-WA0001.jpg">
+        <img src="WhatsApp Image 2026-04-14 at 21.04.04.jpeg">
+        <img src="fer.jpeg">
+    </div>
+</div>
 
-<!-- SERVİS BİLGİSİ PANEL -->
-<div id="bilgi" class="info-panel">
+<!-- SERVİS PANEL -->
+<div id="bilgi" class="panel">
     <h3>Servis Bilgisi</h3>
-    <p>📞 Telefon Simgesin'den Kısa ve Sorunsuz Ulaşa Bilirsiniz</p>
+    <p>📞 0555 555 55 55</p>
     <p>🕒 7/24 Hizmet</p>
     <p>📍 Tekirdağ / Saray</p>
 </div>
 
 <!-- AÇIKLAMA PANEL -->
-<div id="aciklama" class="info-panel">
+<div id="aciklama" class="panel">
     <h3>Açıklama</h3>
-    <p>Her  Marka <MARK>TIR/KAMYON/OTOBÜS </MARK> Gibi ağır Vasıta araÇlarınızın <mark> MOTOR/MEKANİK/BAKIM/ONARIM/ ELEKTİRİK/ELEKTRONİK ARI ZAALRINIZ PROFOSYENEL BİR ŞEKİLDE TAMİR EDİLİP ONARILIR </mark></p>
-    <P>Elektirik kaçakları her türlü aydınlatma sistemlerinde oluşan arızalar modifiye sistemleri ses sistemleri dingil kaldırma , indirme sisteminde oluşan arızalar kaliteli parçalar ve güvenilir işçilikle itina ile yapılır</P>
-    
-    <P>Motor arızalarınız yağ bakımı fren sisteminizdeki arızalar süspansiyon arızalarınız arıza ışıklarınız söndürülür</P>
+    <p><mark> marka TIR/ KAMYON/OTOBÜS  gibi AĞIR VASITA araçlarınızın MOTOR MEKANİK BAKIM ONARIM ELEKTİRİK ELEKTRONİK </mark>arızalarınız profesyonel bir şekilde tamir edilip onarılır</p>
+    <p>Motor arızalarınız yağ bakımı fren sisteminizdeki arızalar süspansiyon arızalarınız arıza ışıklarınız söndürülür</p>
+     <p>Elektirik kaçakları her türlü aydınlatma sistemlerinde oluşan arızalar modifiye sistemleri ses sistemleri dingil kaldırma , indirme sisteminde oluşan arızalar kaliteli parçalar ve güvenilir işçilikle itina ile yapılır</p>
 </div>
 
 <script>
 function konumaGit() {
-    window.open("https://www.google.com/maps?q=41.0082,28.9784", "_blank");
+    window.open("https://maps.app.goo.gl/n1C78MNovfywVXSf9?g_st=aw", "_blank");
 }
 
 function toggleMenu() {
     document.getElementById("menu").classList.toggle("active");
 }
 
-/* 📞 İZİNLİ ARAMA */
-function aramaSor() {
-    let cevap = confirm("Telefon araması başlatılsın mı?");
-    if (cevap) {
-        window.location.href = "tel:+905555555555";
-    }
-}
-
-/* 📦 PANEL KONTROL */
 function togglePanel(id) {
     let bilgi = document.getElementById("bilgi");
     let aciklama = document.getElementById("aciklama");
@@ -186,6 +261,12 @@ function togglePanel(id) {
     } else {
         aciklama.classList.toggle("active");
         bilgi.classList.remove("active");
+    }
+}
+
+function aramaSor() {
+    if (confirm("Telefon araması başlatılsın mı?")) {
+        window.location.href = "tel:+905555555555";
     }
 }
 </script>
